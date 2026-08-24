@@ -1,0 +1,32 @@
+{% extends "admin_base.html" %}
+{% block title %}Projects | Portfolio Admin{% endblock %}
+{% block heading %}Projects{% endblock %}
+{% block content %}
+<div class="admin-page-actions"><a href="{{ url_for('admin_project_new') }}" class="admin-primary-button">+ Add Project</a></div>
+<section class="admin-panel">
+{% if projects %}
+<div class="admin-table-wrap">
+<table class="admin-table">
+<thead><tr><th>Order</th><th>Project</th><th>Published</th><th>Actions</th></tr></thead>
+<tbody>
+{% for project in projects %}
+<tr>
+    <td>{{ project['display_order'] }}</td>
+    <td><strong>{{ project['title'] }}</strong><small>{{ project['description'][:100] }}</small></td>
+    <td><span class="admin-status {% if project['is_published'] %}published{% endif %}">{{ "Yes" if project['is_published'] else "No" }}</span></td>
+    <td>
+        <div class="admin-actions">
+            <a href="{{ url_for('admin_project_edit', project_id=project['id']) }}" class="admin-secondary-button">Edit</a>
+            <form method="post" action="{{ url_for('admin_project_delete', project_id=project['id']) }}">
+                {{ action_form.hidden_tag() }}<button type="submit" class="admin-danger-button">Delete</button>
+            </form>
+        </div>
+    </td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+</div>
+{% else %}<p class="admin-empty">No projects yet.</p>{% endif %}
+</section>
+{% endblock %}

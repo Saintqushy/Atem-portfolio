@@ -1,0 +1,20 @@
+{% extends "admin_base.html" %}
+{% block title %}{{ heading }} | Portfolio Admin{% endblock %}
+{% block heading %}{{ heading }}{% endblock %}
+{% block content %}
+<section class="admin-form-panel">
+<form method="post" enctype="multipart/form-data" class="admin-form">
+    {{ form.hidden_tag() }}
+    <div class="admin-field">{{ form.issuer.label }}{{ form.issuer(placeholder="e.g. ALX, Cisco, Cybersecurity") }}{% for error in form.issuer.errors %}<small class="admin-error">{{ error }}</small>{% endfor %}</div>
+    <div class="admin-field">{{ form.title.label }}{{ form.title(placeholder="Certificate title") }}{% for error in form.title.errors %}<small class="admin-error">{{ error }}</small>{% endfor %}</div>
+    <div class="admin-field">{{ form.description.label }}{{ form.description(rows="4", placeholder="Short description") }}{% for error in form.description.errors %}<small class="admin-error">{{ error }}</small>{% endfor %}</div>
+    <div class="admin-field">{{ form.preview.label }}{{ form.preview() }}{% if certificate and certificate['preview_path'] %}<small class="admin-help">Current: {{ certificate['preview_path'] }}. Leave empty to keep it.</small>{% endif %}{% for error in form.preview.errors %}<small class="admin-error">{{ error }}</small>{% endfor %}</div>
+    <div class="admin-field">{{ form.document.label }}{{ form.document() }}{% if certificate and certificate['document_path'] %}<small class="admin-help">Current: {{ certificate['document_path'] }}. Leave empty to keep it.</small>{% endif %}{% for error in form.document.errors %}<small class="admin-error">{{ error }}</small>{% endfor %}</div>
+    <div class="admin-form-row">
+        <div class="admin-field">{{ form.display_order.label }}{{ form.display_order() }}</div>
+        <label class="admin-checkbox">{{ form.is_published() }}<span>Show on portfolio</span></label>
+    </div>
+    <div class="admin-actions">{{ form.submit(class_="admin-primary-button") }}<a href="{{ url_for('admin_certificates') }}" class="admin-secondary-button">Cancel</a></div>
+</form>
+</section>
+{% endblock %}

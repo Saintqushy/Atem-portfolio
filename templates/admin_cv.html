@@ -1,0 +1,16 @@
+{% extends "admin_base.html" %}
+{% block title %}CV | Portfolio Admin{% endblock %}
+{% block heading %}CV Management{% endblock %}
+{% block content %}
+<section class="admin-form-panel">
+<div class="admin-current-file">
+    <div><p class="admin-eyebrow">CURRENT CV</p><strong>{{ "CV is uploaded." if current_cv else "No CV uploaded yet." }}</strong></div>
+    {% if current_cv %}<a href="{{ url_for('download_cv') }}" class="admin-secondary-button">Download current CV</a>{% endif %}
+</div>
+<form method="post" enctype="multipart/form-data" class="admin-form">
+    {{ form.hidden_tag() }}
+    <div class="admin-field">{{ form.cv_file.label }}{{ form.cv_file() }}<small class="admin-help">PDF only. New upload replaces the previous managed CV.</small>{% for error in form.cv_file.errors %}<small class="admin-error">{{ error }}</small>{% endfor %}</div>
+    {{ form.submit(class_="admin-primary-button") }}
+</form>
+</section>
+{% endblock %}

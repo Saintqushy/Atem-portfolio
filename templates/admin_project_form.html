@@ -1,0 +1,20 @@
+{% extends "admin_base.html" %}
+{% block title %}{{ heading }} | Portfolio Admin{% endblock %}
+{% block heading %}{{ heading }}{% endblock %}
+{% block content %}
+<section class="admin-form-panel">
+<form method="post" enctype="multipart/form-data" class="admin-form">
+    {{ form.hidden_tag() }}
+    <div class="admin-field">{{ form.title.label }}{{ form.title(placeholder="Project title") }}{% for error in form.title.errors %}<small class="admin-error">{{ error }}</small>{% endfor %}</div>
+    <div class="admin-field">{{ form.description.label }}{{ form.description(rows="5", placeholder="Describe what you built, tested or learned.") }}{% for error in form.description.errors %}<small class="admin-error">{{ error }}</small>{% endfor %}</div>
+    <div class="admin-field">{{ form.tags.label }}{{ form.tags(placeholder="Flask, SQLite, Burp Suite, OWASP") }}<small class="admin-help">Comma-separated tags.</small>{% for error in form.tags.errors %}<small class="admin-error">{{ error }}</small>{% endfor %}</div>
+    <div class="admin-field">{{ form.project_url.label }}{{ form.project_url(placeholder="https://...") }}{% for error in form.project_url.errors %}<small class="admin-error">{{ error }}</small>{% endfor %}</div>
+    <div class="admin-field">{{ form.image.label }}{{ form.image() }}{% if project and project['image_path'] %}<small class="admin-help">Current: {{ project['image_path'] }}. Leave empty to keep it.</small>{% endif %}{% for error in form.image.errors %}<small class="admin-error">{{ error }}</small>{% endfor %}</div>
+    <div class="admin-form-row">
+        <div class="admin-field">{{ form.display_order.label }}{{ form.display_order() }}</div>
+        <label class="admin-checkbox">{{ form.is_published() }}<span>Show on portfolio</span></label>
+    </div>
+    <div class="admin-actions">{{ form.submit(class_="admin-primary-button") }}<a href="{{ url_for('admin_projects') }}" class="admin-secondary-button">Cancel</a></div>
+</form>
+</section>
+{% endblock %}

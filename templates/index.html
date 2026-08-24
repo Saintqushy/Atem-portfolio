@@ -1,0 +1,981 @@
+{% extends "base.html" %}
+
+{% block title %}
+Atem Manyok | Network Engineer & Cybersecurity
+{% endblock %}
+
+{% block content %}
+
+<!-- =====================================================
+     HERO SECTION
+====================================================== -->
+
+<section class="hero-section">
+
+    <div class="hero-container">
+
+        <div class="hero-content">
+
+            <p class="hero-kicker">
+                Network Engineer
+                <span>•</span>
+                Cybersecurity Enthusiast
+                <span>•</span>
+                Full-Stack Developer
+            </p>
+
+            <h1 class="hero-title">
+                Building
+                <span>secure,</span><br>
+                <span>connected</span>
+                and<br>
+                intelligent systems.
+            </h1>
+
+            <p class="hero-description">
+                I design networked, secure and scalable solutions
+                that solve real-world problems.
+            </p>
+
+            <div class="hero-buttons">
+
+                <a
+                    href="#projects"
+                    class="button button-primary"
+                >
+                    View My Work
+                    <span>→</span>
+                </a>
+
+                <a
+                    href="{{ url_for('download_cv') if cv_available else '#' }}"
+                    class="button button-secondary{% if not cv_available %} button-disabled{% endif %}"
+                    {% if cv_available %}download{% else %}aria-disabled="true"{% endif %}
+                >
+                    Download CV
+                    <span>↓</span>
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="hero-image-wrapper">
+
+            <img
+                src="{{ url_for('static', filename='images/atem-hero.png.png') }}"
+                alt="Atem Mnayok"
+                class="hero-image"
+            >
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     STATS SECTION
+====================================================== -->
+
+<section class="stats-section">
+
+    <div class="stats-container">
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                &lt;/&gt;
+            </div>
+
+            <h3>3+</h3>
+
+            <p>
+                Projects Completed
+            </p>
+
+        </div>
+
+
+        <div class="stat-divider"></div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                ☁
+            </div>
+
+            <h3>500+</h3>
+
+            <p>
+                Hours of Self-Learning
+            </p>
+
+        </div>
+
+
+        <div class="stat-divider"></div>
+
+
+        <a href="#certifications" class="stat-card stat-card-link" aria-label="View certifications">
+
+            <div class="stat-icon">
+                ◇
+            </div>
+
+            <h3>4</h3>
+
+            <p>
+                Certifications & Courses
+            </p>
+
+        </a>
+
+
+        <div class="stat-divider"></div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                ⌘
+            </div>
+
+            <h3>Always</h3>
+
+            <p>
+                Learning & Building
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     ABOUT SECTION
+====================================================== -->
+
+<section
+    class="about-section section"
+    id="about"
+>
+
+    <div class="section-container">
+
+        <div class="about-grid">
+
+            <div class="about-content">
+
+                <p class="section-label">
+                    About Me
+                </p>
+
+                <h2 class="section-title">
+                    Turning curiosity into solutions.
+                </h2>
+
+                <p class="about-text">
+                    I'm Atem Manyok — a Network Engineer,
+                    Cybersecurity enthusiast and Full-Stack Developer.
+                    I enjoy understanding how systems work, securing them
+                    and building tools that solve real problems.
+                </p>
+
+                <a
+                    href="#about"
+                    class="button button-dark"
+                >
+                    More About Me
+                    <span>→</span>
+                </a>
+
+            </div>
+
+
+            <div class="about-image-wrapper">
+
+                <img
+                    src="{{ url_for('static', filename='images/atem-about.jpg.jpeg') }}"
+                    alt="Atem Mnayok"
+                    class="about-image"
+                >
+
+            </div>
+
+        </div>
+
+
+        <!-- Specialty Cards -->
+
+        <div class="specialty-grid">
+
+            <article class="specialty-card">
+
+                <div class="specialty-icon networking-icon">
+                    ◫
+                </div>
+
+                <div>
+
+                    <h3>
+                        Networking
+                    </h3>
+
+                    <p>
+                        Design • Configure • Automate
+                    </p>
+
+                </div>
+
+            </article>
+
+
+            <article class="specialty-card">
+
+                <div class="specialty-icon security-icon">
+                    ◇
+                </div>
+
+                <div>
+
+                    <h3>
+                        Cybersecurity
+                    </h3>
+
+                    <p>
+                        Defend • Monitor • Respond
+                    </p>
+
+                </div>
+
+            </article>
+
+
+            <article class="specialty-card">
+
+                <div class="specialty-icon development-icon">
+                    &lt;/&gt;
+                </div>
+
+                <div>
+
+                    <h3>
+                        Web Development
+                    </h3>
+
+                    <p>
+                        Frontend • Backend • Database
+                    </p>
+
+                </div>
+
+            </article>
+
+
+            <article class="specialty-card">
+
+                <div class="specialty-icon problem-icon">
+                    ☼
+                </div>
+
+                <div>
+
+                    <h3>
+                        Problem Solving
+                    </h3>
+
+                    <p>
+                        Think • Build • Improve
+                    </p>
+
+                </div>
+
+            </article>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     TECHNOLOGIES / SKILLS
+====================================================== -->
+
+<section
+    class="technologies-section section"
+    id="skills"
+>
+
+    <div class="section-container">
+
+        <p class="section-label">
+            Technologies I Work With
+        </p>
+
+        <h2 class="section-title">
+            Technologies I work with
+        </h2>
+
+
+        <!-- Filters -->
+
+        <div class="technology-filters">
+
+            <button
+                class="filter-button active"
+                data-filter="all"
+                type="button"
+            >
+                All
+            </button>
+
+            <button
+                class="filter-button"
+                data-filter="networking"
+                type="button"
+            >
+                Networking
+            </button>
+
+            <button
+                class="filter-button"
+                data-filter="cybersecurity"
+                type="button"
+            >
+                Cybersecurity
+            </button>
+
+            <button
+                class="filter-button"
+                data-filter="development"
+                type="button"
+            >
+                Development
+            </button>
+
+            <button
+                class="filter-button"
+                data-filter="tools"
+                type="button"
+            >
+                Tools
+            </button>
+
+        </div>
+
+
+        <!-- Technology Cards -->
+
+        <div class="technology-grid">
+
+            <div
+                class="technology-card"
+                data-category="development"
+            >
+                <img
+                    src="{{ url_for('static', filename='images/tech/python.webp') }}"
+                    alt="Python"
+                    class="technology-logo"
+                >
+                <span>Python</span>
+            </div>
+
+
+            <div
+                class="technology-card"
+                data-category="development"
+            >
+                <img
+                    src="{{ url_for('static', filename='images/tech/flask.jpg') }}"
+                    alt="Flask"
+                    class="technology-logo"
+                >
+                <span>Flask</span>
+            </div>
+
+
+            <div
+                class="technology-card"
+                data-category="development"
+            >
+                <img
+                    src="{{ url_for('static', filename='images/tech/html5.svg.webp') }}"
+                    alt="HTML5"
+                    class="technology-logo"
+                >
+                <span>HTML5</span>
+            </div>
+
+
+            <div
+                class="technology-card"
+                data-category="development"
+            >
+                <img
+                    src="{{ url_for('static', filename='images/tech/css3.svg.webp') }}"
+                    alt="CSS3"
+                    class="technology-logo"
+                >
+                <span>CSS3</span>
+            </div>
+
+
+            <div
+                class="technology-card"
+                data-category="development"
+            >
+                <img
+                    src="{{ url_for('static', filename='images/tech/javascript.png') }}"
+                    alt="JavaScript"
+                    class="technology-logo"
+                >
+                <span>JavaScript</span>
+            </div>
+
+
+            <div
+                class="technology-card"
+                data-category="development"
+            >
+                <img
+                    src="{{ url_for('static', filename='images/tech/SQLite.webp') }}"
+                    alt="SQLite"
+                    class="technology-logo"
+                >
+                <span>SQLite</span>
+            </div>
+
+
+            <div
+                class="technology-card"
+                data-category="cybersecurity tools"
+            >
+                <img
+                    src="{{ url_for('static', filename='images/tech/linux.webp') }}"
+                    alt="Linux"
+                    class="technology-logo"
+                >
+                <span>Linux</span>
+            </div>
+
+
+            <div
+                class="technology-card"
+                data-category="networking"
+            >
+                <img
+                    src="{{ url_for('static', filename='images/tech/cisco.jpg') }}"
+                    alt="Cisco"
+                    class="technology-logo"
+                >
+                <span>Cisco / Networking</span>
+            </div>
+
+
+            <div
+                class="technology-card"
+                data-category="cybersecurity networking tools"
+            >
+                <img
+                    src="{{ url_for('static', filename='images/tech/wireshark.png') }}"
+                    alt="Wireshark"
+                    class="technology-logo"
+                >
+                <span>Wireshark</span>
+            </div>
+
+
+            <div
+                class="technology-card"
+                data-category="cybersecurity networking tools"
+            >
+                <img
+                    src="{{ url_for('static', filename='images/tech/nmap.png') }}"
+                    alt="Nmap"
+                    class="technology-logo"
+                >
+                <span>Nmap</span>
+            </div>
+
+
+            <div
+                class="technology-card"
+                data-category="tools development"
+            >
+                <img
+                    src="{{ url_for('static', filename='images/tech/github.jpg') }}"
+                    alt="GitHub"
+                    class="technology-logo"
+                >
+                <span>Git &amp; GitHub</span>
+            </div>
+
+
+            <div
+                class="technology-card"
+                data-category="tools development"
+            >
+                <img
+                    src="{{ url_for('static', filename='images/tech/vscode.webp') }}"
+                    alt="Visual Studio Code"
+                    class="technology-logo"
+                >
+                <span>VS Code</span>
+            </div>
+
+
+            <div
+                class="technology-card"
+                data-category="tools"
+            >
+                <img
+                    src="{{ url_for('static', filename='images/tech/terminal.jpg') }}"
+                    alt="Terminal"
+                    class="technology-logo"
+                >
+                <span>Terminal</span>
+            </div>
+
+
+            <div
+                class="technology-card"
+                data-category="tools development"
+            >
+                <img
+                    src="{{ url_for('static', filename='images/tech/postman.webp') }}"
+                    alt="Postman"
+                    class="technology-logo"
+                >
+                <span>Postman</span>
+            </div>
+
+
+            <div
+                class="technology-card"
+                data-category="cybersecurity networking"
+            >
+                <img
+                    src="{{ url_for('static', filename='images/tech/firewall.webp') }}"
+                    alt="Firewall"
+                    class="technology-logo"
+                >
+                <span>Firewall</span>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     CERTIFICATIONS
+====================================================== -->
+
+<section class="certifications-section section" id="certifications">
+
+    <div class="section-container">
+
+        <div class="certifications-heading">
+            <div>
+                <p class="section-label">Certifications</p>
+                <h2 class="section-title">Learning backed by credentials.</h2>
+                <p class="certifications-intro">
+                    Selected certificates from my learning in AI, cybersecurity,
+                    Internet of Things and Python programming.
+                </p>
+            </div>
+        </div>
+
+        <div class="certifications-grid">
+
+            {% for certificate in certificates %}
+            <article class="certificate-card">
+
+                <div class="certificate-preview certificate-preview-image">
+                    {% if certificate['preview_path'] %}
+                    <img
+                        src="{{ media_url(certificate['preview_path']) }}"
+                        alt="{{ certificate['title'] }} preview"
+                        class="certificate-image"
+                    >
+                    {% else %}
+                    <div class="certificate-file-icon">CERT</div>
+                    {% endif %}
+                </div>
+
+                <div class="certificate-content">
+                    <span class="certificate-badge">{{ certificate['issuer'] }}</span>
+                    <h3>{{ certificate['title'] }}</h3>
+                    <p>{{ certificate['description'] }}</p>
+
+                    {% if certificate['document_path'] %}
+                    <a
+                        href="{{ media_url(certificate['document_path']) }}"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="certificate-link"
+                    >
+                        View Certificate <span>↗</span>
+                    </a>
+                    {% endif %}
+                </div>
+
+            </article>
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     FEATURED PROJECTS
+====================================================== -->
+
+<section
+    class="projects-section section"
+    id="projects"
+>
+
+    <div class="section-container">
+
+        <div class="projects-heading">
+
+            <div>
+                <p class="section-label">Featured Projects</p>
+                <h2 class="section-title">Some things I've built</h2>
+            </div>
+
+            <a href="#projects" class="projects-view-all">
+                View All Projects <span>→</span>
+            </a>
+
+        </div>
+
+        <div class="projects-grid">
+
+            {% for project in projects %}
+            <article class="project-card">
+
+                {% if project['image_path'] %}
+                <div class="project-image-wrapper">
+                    <img
+                        src="{{ media_url(project['image_path']) }}"
+                        alt="{{ project['title'] }}"
+                        class="project-image"
+                    >
+                </div>
+                {% endif %}
+
+                <div class="project-content">
+
+                    <h3>{{ project['title'] }}</h3>
+                    <p>{{ project['description'] }}</p>
+
+                    {% if project['tags'] %}
+                    <div class="project-tags">
+                        {% for tag in project['tags'].split(',') %}
+                            {% if tag.strip() %}
+                            <span>{{ tag.strip() }}</span>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+
+                    {% if project['project_url'] %}
+                    <a
+                        href="{{ project['project_url'] }}"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="project-link"
+                    >
+                        View Project <span>→</span>
+                    </a>
+                    {% endif %}
+
+                </div>
+
+            </article>
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     JOURNEY / TIMELINE
+====================================================== -->
+
+<section class="journey-section section">
+
+    <div class="section-container">
+
+        <p class="section-label journey-label">
+            My Journey
+        </p>
+
+        <h2 class="section-title journey-title">
+            Consistent progress.
+        </h2>
+
+
+        <div class="timeline">
+
+            <div class="timeline-line"></div>
+
+
+            <div class="timeline-item">
+
+                <div class="timeline-dot"></div>
+
+                <div class="timeline-content">
+
+                    <h3>
+                        Started the journey
+                    </h3>
+
+                    <p>
+                        Fell in love with tech
+                    </p>
+
+                    <span>
+                        2021
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="timeline-item">
+
+                <div class="timeline-dot"></div>
+
+                <div class="timeline-content">
+
+                    <h3>
+                        Networking & Security
+                    </h3>
+
+                    <p>
+                        Built strong foundations
+                    </p>
+
+                    <span>
+                        2022 – 2023
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="timeline-item">
+
+                <div class="timeline-dot"></div>
+
+                <div class="timeline-content">
+
+                    <h3>
+                        Web Development
+                    </h3>
+
+                    <p>
+                        Became a full-stack developer
+                    </p>
+
+                    <span>
+                        2024
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="timeline-item">
+
+                <div class="timeline-dot timeline-dot-future"></div>
+
+                <div class="timeline-content">
+
+                    <h3>
+                        What's next?
+                    </h3>
+
+                    <p>
+                        Bigger projects, bigger impact
+                    </p>
+
+                    <span>
+                        2025+
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     CONTACT CTA
+====================================================== -->
+
+<section class="contact-cta-section">
+
+    <div class="section-container">
+
+        <div class="contact-cta">
+
+            <div class="contact-cta-left">
+
+                <div class="contact-cta-icon">
+                    ◇
+                </div>
+
+
+                <div>
+
+                    <h2>
+                        Let's build something great.
+                    </h2>
+
+                    <p>
+                        Interested in working together, collaborating
+                        or just saying hi? My inbox is open.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <a
+                href="{{ url_for('contact') }}"
+                class="button button-dark contact-button"
+            >
+                Get in touch
+                <span>→</span>
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     FOOTER
+====================================================== -->
+
+<footer class="site-footer">
+
+    <div class="footer-container">
+
+        <div class="footer-brand">
+
+            <a
+                href="{{ url_for('index') }}"
+                class="footer-logo"
+            >
+                <span>A</span>
+                Atem Manyok.
+            </a>
+
+
+            <p>
+                Network Engineer • Cybersecurity Enthusiast
+            </p>
+
+            <p>
+                • Full-Stack Developer
+            </p>
+
+            <small>
+                © 2026 Atem Manyok. All rights reserved.
+            </small>
+
+        </div>
+
+
+        <div class="footer-social">
+
+            <p>
+                Let's connect
+            </p>
+
+
+            <div class="footer-social-links">
+
+                <a
+                    href="https://github.com/Saintqushy"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="GitHub"
+                >
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8a9.4 9.4 0 0 0-3 18.3c.5.1.7-.2.7-.5v-1.8c-2.8.6-3.4-1.2-3.4-1.2-.5-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 0 1.6 1.1 1.6 1.1.9 1.6 2.4 1.1 2.9.8.1-.7.4-1.1.7-1.4-2.3-.3-4.7-1.1-4.7-5a3.9 3.9 0 0 1 1-2.7 3.6 3.6 0 0 1 .1-2.7s.8-.3 2.8 1a9.5 9.5 0 0 1 5 0c1.9-1.3 2.8-1 2.8-1a3.6 3.6 0 0 1 .1 2.7 3.9 3.9 0 0 1 1 2.7c0 3.9-2.4 4.7-4.7 5 .4.3.7 1 .7 1.9v2.7c0 .4.2.6.7.5A9.4 9.4 0 0 0 12 2.8Z"></path></svg>
+                </a>
+
+                <a
+                    href="https://www.linkedin.com/in/atem-manyok-7075a9302"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="LinkedIn"
+                >
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="9" width="3" height="11"></rect><circle cx="5.5" cy="5.5" r="1.8"></circle><path d="M11 20V9h3v1.8c.8-1.3 2-2.1 3.7-2.1 2.7 0 4.3 1.8 4.3 5.3v6h-3v-5.4c0-1.8-.7-2.9-2.2-2.9-1.7 0-2.8 1.2-2.8 3.4V20Z"></path></svg>
+                </a>
+
+                <a
+                    href="https://www.instagram.com/atem.manyok33/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Instagram"
+                >
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.3" cy="6.7" r="1"></circle></svg>
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <a
+            href="#"
+            class="back-to-top"
+            aria-label="Back to top"
+        >
+            ↑
+        </a>
+
+    </div>
+
+</footer>
+
+{% endblock %}

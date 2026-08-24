@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex,nofollow">
+    <title>Admin Login | Atem Manyok</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='admin.css') }}">
+</head>
+<body class="admin-login-body">
+<div class="admin-login-card">
+    <a href="{{ url_for('index') }}" class="admin-login-brand">Atem Manyok<span>.</span></a>
+    <p class="admin-eyebrow">PRIVATE OWNER AREA</p>
+    <h1>Welcome back.</h1>
+    <p class="admin-muted">Manage projects, certificates, your CV and contact messages.</p>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        <div class="admin-flashes">
+            {% for category, message in messages %}
+                <div class="admin-flash {{ category }}">{{ message }}</div>
+            {% endfor %}
+        </div>
+        {% endif %}
+    {% endwith %}
+
+    <form method="post" class="admin-form">
+        {{ form.hidden_tag() }}
+        <div class="admin-field">
+            {{ form.username.label }}
+            {{ form.username(autocomplete="username", placeholder="Admin username") }}
+            {% for error in form.username.errors %}<small class="admin-error">{{ error }}</small>{% endfor %}
+        </div>
+        <div class="admin-field">
+            {{ form.password.label }}
+            {{ form.password(autocomplete="current-password", placeholder="Password") }}
+            {% for error in form.password.errors %}<small class="admin-error">{{ error }}</small>{% endfor %}
+        </div>
+        {{ form.submit(class_="admin-primary-button") }}
+    </form>
+</div>
+</body>
+</html>

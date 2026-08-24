@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex,nofollow">
+    <title>{% block title %}Portfolio Admin{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='admin.css') }}">
+</head>
+<body class="admin-body">
+<div class="admin-shell">
+    <aside class="admin-sidebar">
+        <a href="{{ url_for('admin_dashboard') }}" class="admin-brand">
+            AM<span>.</span><small>Portfolio Admin</small>
+        </a>
+        <nav class="admin-nav">
+            <a href="{{ url_for('admin_dashboard') }}">Dashboard</a>
+            <a href="{{ url_for('admin_messages') }}">Messages</a>
+            <a href="{{ url_for('admin_projects') }}">Projects</a>
+            <a href="{{ url_for('admin_certificates') }}">Certificates</a>
+            <a href="{{ url_for('admin_cv') }}">CV</a>
+            <a href="{{ url_for('index') }}" target="_blank" rel="noopener noreferrer">View Portfolio ↗</a>
+        </nav>
+        <form method="post" action="{{ url_for('admin_logout') }}" class="admin-logout">
+            {{ logout_form.hidden_tag() }}
+            <button type="submit">Sign out</button>
+        </form>
+    </aside>
+
+    <main class="admin-main">
+        <header class="admin-topbar">
+            <div>
+                <p class="admin-eyebrow">OWNER AREA</p>
+                <h1>{% block heading %}Dashboard{% endblock %}</h1>
+            </div>
+            <span class="admin-user">{{ session.get('admin_username', 'Admin') }}</span>
+        </header>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+            <div class="admin-flashes">
+                {% for category, message in messages %}
+                    <div class="admin-flash {{ category }}">{{ message }}</div>
+                {% endfor %}
+            </div>
+            {% endif %}
+        {% endwith %}
+
+        {% block content %}{% endblock %}
+    </main>
+</div>
+</body>
+</html>

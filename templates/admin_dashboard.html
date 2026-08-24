@@ -1,0 +1,40 @@
+{% extends "admin_base.html" %}
+{% block title %}Dashboard | Portfolio Admin{% endblock %}
+{% block heading %}Dashboard{% endblock %}
+{% block content %}
+<section class="admin-stat-grid">
+    <a href="{{ url_for('admin_messages') }}" class="admin-stat-card">
+        <span>Messages</span><strong>{{ counts.messages }}</strong><small>{{ counts.unread_messages }} unread</small>
+    </a>
+    <a href="{{ url_for('admin_projects') }}" class="admin-stat-card">
+        <span>Projects</span><strong>{{ counts.projects }}</strong><small>Manage portfolio work</small>
+    </a>
+    <a href="{{ url_for('admin_certificates') }}" class="admin-stat-card">
+        <span>Certificates</span><strong>{{ counts.certificates }}</strong><small>Manage credentials</small>
+    </a>
+    <a href="{{ url_for('admin_cv') }}" class="admin-stat-card">
+        <span>CV</span><strong>{{ "✓" if cv_path else "—" }}</strong><small>{{ "Uploaded" if cv_path else "Not uploaded" }}</small>
+    </a>
+</section>
+
+<section class="admin-panel">
+    <div class="admin-panel-heading">
+        <div><p class="admin-eyebrow">INBOX</p><h2>Recent messages</h2></div>
+        <a href="{{ url_for('admin_messages') }}" class="admin-secondary-button">View all</a>
+    </div>
+
+    {% if recent_messages %}
+    <div class="admin-message-list">
+        {% for message in recent_messages %}
+        <article class="admin-message-preview {% if not message['is_read'] %}unread{% endif %}">
+            <div><strong>{{ message['name'] }}</strong><span>{{ message['email'] }}</span></div>
+            <p>{{ message['message'][:140] }}{% if message['message']|length > 140 %}…{% endif %}</p>
+            <time>{{ message['created_at'] }}</time>
+        </article>
+        {% endfor %}
+    </div>
+    {% else %}
+    <p class="admin-empty">No contact messages yet.</p>
+    {% endif %}
+</section>
+{% endblock %}

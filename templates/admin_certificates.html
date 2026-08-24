@@ -1,0 +1,32 @@
+{% extends "admin_base.html" %}
+{% block title %}Certificates | Portfolio Admin{% endblock %}
+{% block heading %}Certificates{% endblock %}
+{% block content %}
+<div class="admin-page-actions"><a href="{{ url_for('admin_certificate_new') }}" class="admin-primary-button">+ Add Certificate</a></div>
+<section class="admin-panel">
+{% if certificates %}
+<div class="admin-table-wrap">
+<table class="admin-table">
+<thead><tr><th>Order</th><th>Credential</th><th>Published</th><th>Actions</th></tr></thead>
+<tbody>
+{% for certificate in certificates %}
+<tr>
+    <td>{{ certificate['display_order'] }}</td>
+    <td><strong>{{ certificate['title'] }}</strong><small>{{ certificate['issuer'] }}</small></td>
+    <td><span class="admin-status {% if certificate['is_published'] %}published{% endif %}">{{ "Yes" if certificate['is_published'] else "No" }}</span></td>
+    <td>
+        <div class="admin-actions">
+            <a href="{{ url_for('admin_certificate_edit', certificate_id=certificate['id']) }}" class="admin-secondary-button">Edit</a>
+            <form method="post" action="{{ url_for('admin_certificate_delete', certificate_id=certificate['id']) }}">
+                {{ action_form.hidden_tag() }}<button type="submit" class="admin-danger-button">Delete</button>
+            </form>
+        </div>
+    </td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+</div>
+{% else %}<p class="admin-empty">No certificates yet.</p>{% endif %}
+</section>
+{% endblock %}

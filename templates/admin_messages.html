@@ -1,0 +1,34 @@
+{% extends "admin_base.html" %}
+{% block title %}Messages | Portfolio Admin{% endblock %}
+{% block heading %}Contact Messages{% endblock %}
+{% block content %}
+<section class="admin-panel">
+{% if messages %}
+<div class="admin-message-list full">
+{% for message in messages %}
+<article class="admin-message-card {% if not message['is_read'] %}unread{% endif %}">
+    <div class="admin-message-meta">
+        <div><strong>{{ message['name'] }}</strong><a href="mailto:{{ message['email'] }}">{{ message['email'] }}</a></div>
+        <time>{{ message['created_at'] }}</time>
+    </div>
+    <p>{{ message['message'] }}</p>
+    <div class="admin-actions">
+        {% if not message['is_read'] %}
+        <form method="post" action="{{ url_for('admin_message_read', message_id=message['id']) }}">
+            {{ action_form.hidden_tag() }}
+            <button type="submit" class="admin-secondary-button">Mark read</button>
+        </form>
+        {% endif %}
+        <form method="post" action="{{ url_for('admin_message_delete', message_id=message['id']) }}">
+            {{ action_form.hidden_tag() }}
+            <button type="submit" class="admin-danger-button">Delete</button>
+        </form>
+    </div>
+</article>
+{% endfor %}
+</div>
+{% else %}
+<p class="admin-empty">No messages yet.</p>
+{% endif %}
+</section>
+{% endblock %}

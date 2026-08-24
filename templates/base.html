@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Portfolio of Atem Manyok - Network Engineer, Cybersecurity Enthusiast and Full-Stack Developer."
+    >
+
+    <title>
+        {% block title %}
+        Atem Manyok | Portfolio
+        {% endblock %}
+    </title>
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Caveat:wght@600&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+
+    {% block extra_css %}{% endblock %}
+
+</head>
+
+<body>
+
+
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
+
+    <header class="site-header">
+
+        <div class="header-container">
+
+
+            <!-- Logo -->
+            <a
+                href="{{ url_for('index') }}"
+                class="site-logo"
+                aria-label="Atem Manyok home"
+            >
+                Atem Manyok<span>.</span>
+            </a>
+
+
+            <!-- =================================================
+                 DESKTOP NAVIGATION
+            ================================================== -->
+
+            <nav
+                class="desktop-nav"
+                aria-label="Desktop navigation"
+            >
+
+                <a href="{{ url_for('index') }}">
+                    Home
+                </a>
+
+                <a href="{{ url_for('index', _anchor='about') }}">
+                    About
+                </a>
+
+                <a href="{{ url_for('index', _anchor='skills') }}">
+                    Skills
+                </a>
+
+                <a href="{{ url_for('index', _anchor='projects') }}">
+                    Projects
+                </a>
+
+                <a href="{{ url_for('index', _anchor='certifications') }}">
+                    Certifications
+                </a>
+
+                <a href="{{ url_for('contact') }}">
+                    Contact
+                </a>
+
+            </nav>
+
+
+            <!-- Hamburger -->
+            <button
+                class="menu-button"
+                id="menuButton"
+                type="button"
+                aria-label="Open navigation menu"
+                aria-controls="sideMenu"
+                aria-expanded="false"
+            >
+
+                <span></span>
+                <span></span>
+                <span></span>
+
+            </button>
+
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =====================================================
+         MENU OVERLAY
+    ====================================================== -->
+
+    <div
+        class="menu-overlay"
+        id="menuOverlay"
+        aria-hidden="true"
+    ></div>
+
+
+
+    <!-- =====================================================
+         SIDE MENU
+    ====================================================== -->
+
+    <aside
+        class="side-menu"
+        id="sideMenu"
+        aria-hidden="true"
+    >
+
+        <button
+            class="menu-close"
+            id="menuClose"
+            type="button"
+            aria-label="Close navigation menu"
+        >
+            &times;
+        </button>
+
+
+
+        <!-- =================================================
+             SIDE NAVIGATION
+        ================================================== -->
+
+        <nav
+            class="side-navigation"
+            aria-label="Main navigation"
+        >
+
+
+            <!-- HOME -->
+            <a
+                href="{{ url_for('index') }}"
+                class="nav-link"
+            >
+
+                <span class="nav-icon">
+
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M3 11.5 12 4l9 7.5"></path>
+                        <path d="M5.5 10.5V20h13v-9.5"></path>
+                        <path d="M9.5 20v-6h5v6"></path>
+                    </svg>
+
+                </span>
+
+                <span>Home</span>
+
+            </a>
+
+
+
+            <!-- ABOUT -->
+            <a
+                href="{{ url_for('index', _anchor='about') }}"
+                class="nav-link"
+            >
+
+                <span class="nav-icon">
+
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+
+                        <circle
+                            cx="12"
+                            cy="8"
+                            r="3.5"
+                        ></circle>
+
+                        <path
+                            d="M5.5 20c.5-4 2.8-6 6.5-6s6 2 6.5 6"
+                        ></path>
+
+                    </svg>
+
+                </span>
+
+                <span>About</span>
+
+            </a>
+
+
+
+            <!-- SKILLS -->
+            <a
+                href="{{ url_for('index', _anchor='skills') }}"
+                class="nav-link"
+            >
+
+                <span class="nav-icon">
+
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+
+                        <path d="m8 9-4 3 4 3"></path>
+                        <path d="m16 9 4 3-4 3"></path>
+                        <path d="m14 5-4 14"></path>
+
+                    </svg>
+
+                </span>
+
+                <span>Skills</span>
+
+            </a>
+
+
+
+            <!-- PROJECTS -->
+            <a
+                href="{{ url_for('index', _anchor='projects') }}"
+                class="nav-link"
+            >
+
+                <span class="nav-icon">
+
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+
+                        <rect
+                            x="3.5"
+                            y="6.5"
+                            width="17"
+                            height="13"
+                            rx="2"
+                        ></rect>
+
+                        <path
+                            d="M9 6.5V4.5h6v2"
+                        ></path>
+
+                    </svg>
+
+                </span>
+
+                <span>Projects</span>
+
+            </a>
+
+
+
+            <!-- CERTIFICATIONS -->
+            <a
+                href="{{ url_for('index', _anchor='certifications') }}"
+                class="nav-link"
+            >
+
+                <span class="nav-icon">
+
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+
+                        <path
+                            d="M12 3 19 6v5c0 4.5-2.7 7.8-7 10-4.3-2.2-7-5.5-7-10V6l7-3Z"
+                        ></path>
+
+                        <path
+                            d="m9 12 2 2 4-4"
+                        ></path>
+
+                    </svg>
+
+                </span>
+
+                <span>Certifications</span>
+
+            </a>
+
+
+
+            <!-- CONTACT -->
+            <a
+                href="{{ url_for('contact') }}"
+                class="nav-link {% if request.endpoint == 'contact' %}active{% endif %}"
+            >
+
+                <span class="nav-icon">
+
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+
+                        <rect
+                            x="3"
+                            y="5"
+                            width="18"
+                            height="14"
+                            rx="2"
+                        ></rect>
+
+                        <path
+                            d="m4 7 8 6 8-6"
+                        ></path>
+
+                    </svg>
+
+                </span>
+
+                <span>Contact</span>
+
+            </a>
+
+
+        </nav>
+
+
+
+        <!-- =================================================
+             SOCIAL LINKS
+        ================================================== -->
+
+        <div class="menu-social">
+
+            <p>
+                Let's connect
+            </p>
+
+            <div class="social-links">
+
+
+                <!-- GitHub -->
+                <a
+                    href="https://github.com/Saintqushy"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="GitHub"
+                    title="GitHub"
+                >
+
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+
+                        <path
+                            d="M12 2.8a9.4 9.4 0 0 0-3 18.3c.5.1.7-.2.7-.5v-1.8c-2.8.6-3.4-1.2-3.4-1.2-.5-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 0 1.6 1.1 1.6 1.1.9 1.6 2.4 1.1 2.9.8.1-.7.4-1.1.7-1.4-2.3-.3-4.7-1.1-4.7-5a3.9 3.9 0 0 1 1-2.7 3.6 3.6 0 0 1 .1-2.7s.8-.3 2.8 1a9.5 9.5 0 0 1 5 0c1.9-1.3 2.8-1 2.8-1a3.6 3.6 0 0 1 .1 2.7 3.9 3.9 0 0 1 1 2.7c0 3.9-2.4 4.7-4.7 5 .4.3.7 1 .7 1.9v2.7c0 .4.2.6.7.5A9.4 9.4 0 0 0 12 2.8Z"
+                        ></path>
+
+                    </svg>
+
+                </a>
+
+
+
+                <!-- LinkedIn -->
+                <a
+                    href="https://www.linkedin.com/in/atem-manyok-7075a9302"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="LinkedIn"
+                    title="LinkedIn"
+                >
+
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+
+                        <rect
+                            x="4"
+                            y="9"
+                            width="3"
+                            height="11"
+                        ></rect>
+
+                        <circle
+                            cx="5.5"
+                            cy="5.5"
+                            r="1.8"
+                        ></circle>
+
+                        <path
+                            d="M11 20V9h3v1.8c.8-1.3 2-2.1 3.7-2.1 2.7 0 4.3 1.8 4.3 5.3v6h-3v-5.4c0-1.8-.7-2.9-2.2-2.9-1.7 0-2.8 1.2-2.8 3.4V20Z"
+                        ></path>
+
+                    </svg>
+
+                </a>
+
+
+
+                <!-- Instagram -->
+                <a
+                    href="https://www.instagram.com/atem.manyok33/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Instagram"
+                    title="Instagram"
+                >
+
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+
+                        <rect
+                            x="3"
+                            y="3"
+                            width="18"
+                            height="18"
+                            rx="5"
+                        ></rect>
+
+                        <circle
+                            cx="12"
+                            cy="12"
+                            r="4"
+                        ></circle>
+
+                        <circle
+                            cx="17.3"
+                            cy="6.7"
+                            r="1"
+                        ></circle>
+
+                    </svg>
+
+                </a>
+
+
+            </div>
+
+        </div>
+
+
+    </aside>
+
+
+
+    <!-- =====================================================
+         FLASH MESSAGES
+    ====================================================== -->
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+
+        {% if messages %}
+
+            <div class="flash-container">
+
+                {% for category, message in messages %}
+
+                    <div class="flash-message {{ category }}">
+                        {{ message }}
+                    </div>
+
+                {% endfor %}
+
+            </div>
+
+        {% endif %}
+
+    {% endwith %}
+
+
+
+    <!-- =====================================================
+         PAGE CONTENT
+    ====================================================== -->
+
+    <main>
+
+        {% block content %}
+        {% endblock %}
+
+    </main>
+
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+    ====================================================== -->
+
+    <script
+        src="{{ url_for('static', filename='script.js') }}"
+        defer
+    ></script>
+
+    {% block extra_js %}{% endblock %}
+
+
+</body>
+
+</html>
