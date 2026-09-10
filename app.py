@@ -57,16 +57,8 @@ from wtforms.validators import (
 )
 
 
-# ============================================================
-# LOAD ENVIRONMENT VARIABLES
-# ============================================================
-
 load_dotenv()
 
-
-# ============================================================
-# APP SETUP
-# ============================================================
 
 app = Flask(__name__)
 
@@ -95,20 +87,6 @@ BASE_DIR = Path(__file__).resolve().parent
 
 
 
-# ============================================================
-# POSTGRESQL / NEON CONNECTION
-# ============================================================
-#
-# This reads the DATABASE_URL stored inside your .env file.
-#
-# Example:
-#
-# DATABASE_URL=postgresql://...
-#
-# Never put the real password directly inside app.py.
-#
-# ============================================================
-
 POSTGRES_URL = os.environ.get("DATABASE_URL")
 
 SUPABASE_URL = os.environ.get("SUPABASE_URL", "").rstrip("/")
@@ -135,10 +113,6 @@ def get_supabase_client():
     )
 
 
-# ============================================================
-# FILE STORAGE
-# ============================================================
-
 STATIC_DIR = BASE_DIR / "static"
 UPLOADS_DIR = STATIC_DIR / "uploads"
 
@@ -146,10 +120,6 @@ PROJECT_STORAGE_PREFIX = "projects"
 CERT_STORAGE_PREFIX = "certificates"
 CV_STORAGE_PREFIX = "cv"
 
-
-# ============================================================
-# SECURITY HEADERS
-# ============================================================
 
 Talisman(
     app,
@@ -206,10 +176,6 @@ Talisman(
 )
 
 
-# ============================================================
-# RATE LIMITING
-# ============================================================
-
 limiter = Limiter(
 
     key_func=get_remote_address,
@@ -221,10 +187,6 @@ limiter = Limiter(
     ]
 )
 
-
-# ============================================================
-# POSTGRESQL DATABASE CONNECTION
-# ============================================================
 
 def get_db_connection():
 
@@ -238,10 +200,6 @@ def get_db_connection():
         row_factory=dict_row
     )
 
-
-# ============================================================
-# SITE SETTINGS
-# ============================================================
 
 def get_setting(
     key,
@@ -298,10 +256,6 @@ def set_setting(
 
         connection.commit()
 
-
-# ============================================================
-# FILE HELPERS
-# ============================================================
 
 ALLOWED_UPLOAD_TYPES = {
     ".jpg": "image/jpeg",
@@ -470,10 +424,6 @@ def delete_managed_upload(storage_reference):
         )
 
 
-# ============================================================
-# CONTACT FORM
-# ============================================================
-
 class ContactForm(FlaskForm):
 
     name = StringField(
@@ -523,10 +473,6 @@ class ContactForm(FlaskForm):
     )
 
 
-# ============================================================
-# ADMIN LOGIN FORM
-# ============================================================
-
 class AdminLoginForm(FlaskForm):
 
     username = StringField(
@@ -561,10 +507,6 @@ class AdminLoginForm(FlaskForm):
         "Sign In"
     )
 
-
-# ============================================================
-# PROJECT FORM
-# ============================================================
 
 class ProjectForm(FlaskForm):
 
@@ -678,10 +620,6 @@ class ProjectForm(FlaskForm):
     )
 
 
-# ============================================================
-# CERTIFICATE FORM
-# ============================================================
-
 class CertificateForm(FlaskForm):
 
     issuer = StringField(
@@ -790,10 +728,6 @@ class CertificateForm(FlaskForm):
     )
 
 
-# ============================================================
-# CV FORM
-# ============================================================
-
 class CVForm(FlaskForm):
 
     cv_file = FileField(
@@ -817,20 +751,12 @@ class CVForm(FlaskForm):
     )
 
 
-# ============================================================
-# EMPTY FORM
-# ============================================================
-
 class EmptyForm(FlaskForm):
 
     submit = SubmitField(
         "Submit"
     )
 
-
-# ============================================================
-# ADMIN AUTHORIZATION DECORATOR
-# ============================================================
 
 def admin_required(view):
 
@@ -867,10 +793,6 @@ def admin_required(view):
 
     return wrapped_view
 
-
-# ============================================================
-# CREATE ADMIN CLI COMMAND
-# ============================================================
 
 @app.cli.command(
     "create-admin"
@@ -987,10 +909,6 @@ def create_admin(
         connection.commit()
 
 
-# ============================================================
-# PUBLIC HOME
-# ============================================================
-
 @app.route("/")
 def index():
 
@@ -1042,10 +960,6 @@ def index():
     )
 
 
-# ============================================================
-# ABOUT REDIRECT
-# ============================================================
-
 @app.route("/about")
 def about():
 
@@ -1058,10 +972,6 @@ def about():
     )
 
 
-# ============================================================
-# PROJECTS REDIRECT
-# ============================================================
-
 @app.route("/projects")
 def projects():
 
@@ -1073,10 +983,6 @@ def projects():
         )
     )
 
-
-# ============================================================
-# CV DOWNLOAD
-# ============================================================
 
 @app.route("/cv")
 def download_cv():
@@ -1127,10 +1033,6 @@ def download_cv():
         mimetype="application/pdf",
     )
 
-
-# ============================================================
-# CONTACT
-# ============================================================
 
 @app.route(
     "/contact",
@@ -1214,10 +1116,6 @@ def contact():
         form=form
     )
 
-
-# ============================================================
-# ADMIN LOGIN
-# ============================================================
 
 @app.route(
     "/admin/login",
@@ -1323,10 +1221,6 @@ def admin_login():
     )
 
 
-# ============================================================
-# ADMIN LOGOUT
-# ============================================================
-
 @app.route(
     "/admin/logout",
     methods=["POST"]
@@ -1359,10 +1253,6 @@ def admin_logout():
         )
     )
 
-
-# ============================================================
-# ADMIN DASHBOARD
-# ============================================================
 
 @app.route("/admin")
 
@@ -1446,10 +1336,6 @@ def admin_dashboard():
         logout_form=EmptyForm(),
     )
 
-
-# ============================================================
-# ADMIN MESSAGES
-# ============================================================
 
 @app.route(
     "/admin/messages"
@@ -1578,10 +1464,6 @@ def admin_message_delete(
     )
 
 
-# ============================================================
-# ADMIN PROJECTS
-# ============================================================
-
 @app.route(
     "/admin/projects"
 )
@@ -1616,10 +1498,6 @@ def admin_projects():
         logout_form=EmptyForm(),
     )
 
-
-# ============================================================
-# NEW PROJECT
-# ============================================================
 
 @app.route(
     "/admin/projects/new",
@@ -1719,10 +1597,6 @@ def admin_project_new():
         logout_form=EmptyForm(),
     )
 
-
-# ============================================================
-# EDIT PROJECT
-# ============================================================
 
 @app.route(
     "/admin/projects/<int:project_id>/edit",
@@ -1893,10 +1767,6 @@ def admin_project_edit(
     )
 
 
-# ============================================================
-# DELETE PROJECT
-# ============================================================
-
 @app.route(
     "/admin/projects/<int:project_id>/delete",
     methods=["POST"]
@@ -1968,10 +1838,6 @@ def admin_project_delete(
     )
 
 
-# ============================================================
-# ADMIN CERTIFICATES
-# ============================================================
-
 @app.route(
     "/admin/certificates"
 )
@@ -2006,10 +1872,6 @@ def admin_certificates():
         logout_form=EmptyForm(),
     )
 
-
-# ============================================================
-# NEW CERTIFICATE
-# ============================================================
 
 @app.route(
     "/admin/certificates/new",
@@ -2109,10 +1971,6 @@ def admin_certificate_new():
         logout_form=EmptyForm(),
     )
 
-
-# ============================================================
-# EDIT CERTIFICATE
-# ============================================================
 
 @app.route(
     "/admin/certificates/<int:certificate_id>/edit",
@@ -2297,10 +2155,6 @@ def admin_certificate_edit(
     )
 
 
-# ============================================================
-# DELETE CERTIFICATE
-# ============================================================
-
 @app.route(
     "/admin/certificates/<int:certificate_id>/delete",
     methods=["POST"]
@@ -2379,10 +2233,6 @@ def admin_certificate_delete(
     )
 
 
-# ============================================================
-# ADMIN CV
-# ============================================================
-
 @app.route(
     "/admin/cv",
     methods=[
@@ -2448,10 +2298,6 @@ def admin_cv():
     )
 
 
-# ============================================================
-# ERROR HANDLER - LARGE UPLOAD
-# ============================================================
-
 @app.errorhandler(413)
 
 def upload_too_large(
@@ -2476,10 +2322,6 @@ def upload_too_large(
 
 
 
-
-# ============================================================
-# RUN APP
-# ============================================================
 
 if __name__ == "__main__":
 
